@@ -23,8 +23,8 @@ bool PE_XOR::DeliverStream(const u_char* data, uint64 len)
 		return false;
 	
 	if ( FindKey(data) )
-		printf("Key found!\n");
-	
+		printf("Key found! '%s'\n", key);
+
 	offset += len;
 
 	return true;
@@ -42,34 +42,32 @@ bool PE_XOR::FindKey(const u_char* data)
 		if ( key_0 == 0 && key_1 == 0 )
 			return false;
 
+		// We can our target null section
 		for ( uint i = NULL_SECTION_START; i < NULL_SECTION_END; ++i )
 			{
+			// Is this a place our key could start?
 			if ( data[i] == key_0 && data[i+1] == key_1 )
 				{
-				if ( key_start == 0 )
-					// We saw the key here.
-					key_start = i;
-				else
+				// Now we scan for a key length
+				for ( uint l = ( key_0 == key_1 ) ? 1 : 2; i + l < NULL_SECTION_END; ++l )
 					{
-					// And now we saw it again.
-					bool possible_key_found = true;
-					uint64 key_offset = i - key_start;
-					for ( uint j = key_start; j < i && possible_key_found; ++j )
+					if ( i % l != 0 )
+						continue;
+
+					bool possible_key = true;
+					for ( uint j = 0; (i + j + l < NULL_SECTION_END) && possible_key; ++j )
 						{
-						if ( data[j] != data[j + key_offset] )
-							possible_key_found = false;
+						if ( data[i + j] != data[i + l + j] )
+							possible_key = false;
 						}
-					if ( possible_key_found )
+					if ( possible_key )
 						{
-						key_len = key_offset;
+						key = new char[l + 1];
+						key[l] = 0;
 
-						key = new char[key_len + 1];
-						key[key_len] = 0;
+						memcpy(key, data + i, l);
 
-						memcpy(key, data + key_start, key_len);
-
-						printf("Found key: %s @%x\n", key, i);
-						return true;
+						return true;						
 						}
 					}
 				}
