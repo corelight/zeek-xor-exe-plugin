@@ -1,0 +1,14 @@
+#separator \x09
+#set_separator	,
+#empty_field	(empty)
+#unset_field	-
+#path	http
+#open	2015-04-22-00-28-08
+#fields	ts	uid	id.orig_h	id.orig_p	id.resp_h	id.resp_p	trans_depth	method	host	uri	referrer	user_agent	request_body_len	response_body_len	status_code	status_msg	info_code	info_msg	filename	tags	username	password	proxied	orig_fuids	orig_mime_types	resp_fuids	resp_mime_types
+#types	time	string	addr	port	addr	port	count	string	string	string	string	string	count	count	count	string	count	string	string	set[enum]	string	string	set[string]	vector[string]	vector[string]	vector[string]	vector[string]
+1428602839.244262	CXWv6p3arKYeMETxOg	192.168.122.89	49227	108.61.188.200	80	1	GET	ambasawild.ga	/VVgGCR4KB0wL.html	http://fdsvmfkldv.com/index.html?t=a933392c823b24acd8ef64e57c4dd54b	Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 6.1; WOW64; Trident/4.0; SLCC2; .NET CLR 2.0.50727; .NET CLR 3.5.30729; .NET CLR 3.0.30729; Media Center PC 6.0)	0	43962	200	OK	-	-	-	(empty)	-	-	-	-	-	FDfOpRPqMYk61IR23	text/html
+1428602839.947316	CXWv6p3arKYeMETxOg	192.168.122.89	49227	108.61.188.200	80	2	GET	ambasawild.ga	/BEFBRFZZAgFFC1MdC00JVgoNBgkLWVMJTQlbChsBDA1PUAoGFlAMBkxfVVM	http://ambasawild.ga/VVgGCR4KB0wL.html	Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 6.1; WOW64; Trident/4.0; SLCC2; .NET CLR 2.0.50727; .NET CLR 3.5.30729; .NET CLR 3.0.30729; Media Center PC 6.0)	0	15463	200	OK	-	-	-	(empty)	-	-	-	-	-	F8iRoX3bBJRy0nUlMi	application/x-shockwave-flash
+1428602842.013068	CjhGID4nQcgTWjvg4c	192.168.122.89	49246	108.61.188.200	80	1	GET	ambasawild.ga	/B1BdXR4MVAcIRVNTRQNEUwwHCA8JU1kLAURTAQceCAxVTwgCD0wKAQNFDB0Tf31TLVtSQEA	-	Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 6.1; WOW64; Trident/4.0; SLCC2; .NET CLR 2.0.50727; .NET CLR 3.5.30729; .NET CLR 3.0.30729; Media Center PC 6.0)	0	929792	200	OK	-	-	-	(empty)	-	-	-	-	-	FCS4r5gqymgxis4D2	-
+1428602845.056636	CXWv6p3arKYeMETxOg	192.168.122.89	49227	108.61.188.200	80	3	GET	ambasawild.ga	/B1BdXR4MVAcIRVNTRQNEUwwHCA8JU1kLAURTAQceCAxVTwgCD0wKAQNFDB0ib1d9FkQH	-	Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 6.1; WOW64; Trident/4.0; SLCC2; .NET CLR 2.0.50727; .NET CLR 3.5.30729; .NET CLR 3.0.30729; Media Center PC 6.0)	0	0	200	OK	-	-	-	(empty)	-	-	-	-	-	-	-
+1428602876.429731	CwSkQu4eWZCH7OONC1	192.168.122.89	49267	77.72.80.9	80	1	GET	myip.ru	/	-	default 1.2c	0	4559	200	OK	-	-	-	(empty)	-	-	-	-	-	FUgXmH3i54OERhzRG2	text/html
+#close	2015-04-22-00-28-09

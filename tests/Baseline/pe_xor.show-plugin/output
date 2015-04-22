@@ -1,0 +1,5 @@
+Broala::PE_XOR - Plugin to detect and decrypt XOR-encrypted EXEs (dynamic, version 0.1)
+    [File Analyzer] PE_XOR (ANALYZER_PE_XOR)
+    [Event] pe_xor_found
+    [Event] pe_xor_not_found
+
