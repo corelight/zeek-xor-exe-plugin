@@ -1,5 +1,0 @@
-================
- Broala::PE_XOR
-================
-
-Bro plugin to detect and decrypt XOR-encrypted EXEs.
