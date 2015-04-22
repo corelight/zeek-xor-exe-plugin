@@ -5,6 +5,7 @@
 
 #define NULL_SECTION_START 0x1a
 #define NULL_SECTION_END 0x38
+#define MAX_KEY_LEN 30
 
 using namespace file_analysis;
 
@@ -93,13 +94,13 @@ bool PE_XOR::FindKey(const u_char* data)
 			if ( data[i] == key_0 && data[i+1] == key_1 )
 				{
 				// Now we scan for a key length
-				for ( uint l = ( key_0 == key_1 ) ? 1 : 2; i + l < NULL_SECTION_END; ++l )
+				for ( uint l = ( key_0 == key_1 ) ? 1 : 2; ( i + l < NULL_SECTION_END ) && l < MAX_KEY_LEN; ++l )
 					{
 					if ( i % l != 0 )
 						continue;
 
 					bool possible_key = true;
-					for ( uint j = 0; (i + j + l < NULL_SECTION_END) && ( j < 2*l ) && possible_key; ++j )
+					for ( uint j = 0; (i + j + l < NULL_SECTION_END) && (j < 2 * l) && possible_key; ++j )
 						{
 						if ( data[i + j] != data[i + l + j] )
 							possible_key = false;
@@ -111,7 +112,7 @@ bool PE_XOR::FindKey(const u_char* data)
 						key_len = l;
 
 						memcpy(key, data + i, l);
-						return true;						
+						return true;
 						}
 					}
 				}
