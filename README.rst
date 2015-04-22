@@ -10,7 +10,7 @@ Bro plugin to detect and decrypt XOR-encrypted EXEs.
 
 
  From Source
-=============
+-------------
 
 .. code:: bash
 
@@ -23,11 +23,11 @@ Now confirm that Bro can see it:
 
 .. code:: bash
 
-   bro -N | grep broala
+   bro -N | grep Broala
 
 
 From Plugin Package
-===================
+-------------------
 
 .. code:: bash
 
@@ -38,5 +38,5 @@ Now confirm that Bro can see it:
 
 .. code:: bash
 
-   bro -N | grep broala
+   bro -N | grep Broala
 
