@@ -1,3 +1,5 @@
+#include "BroString.h"
+
 #include "PE_XOR.h"
 #include "file_analysis/Manager.h"
 
@@ -11,6 +13,7 @@ PE_XOR::PE_XOR(RecordVal* args, File* file)
 	{
 	offset = 0;
 	key_found = false;
+	skip = false;
 	}
 
 PE_XOR::~PE_XOR()
@@ -19,11 +22,50 @@ PE_XOR::~PE_XOR()
 
 bool PE_XOR::DeliverStream(const u_char* data, uint64 len)
 	{
-	if ( len < 512 )
-		return false;
+	if ( skip )
+		return true;
+
+	if ( ! key_found && len < 512 )
+		{
+		// This probably shouln't happen.
+		skip = true;
+		return true;
+		}
 	
-	if ( FindKey(data) )
-		printf("Key found! '%s'\n", key);
+	if ( ! key_found )
+		{
+		key_found = FindKey(data);
+		if ( key_found )
+			{
+			val_list* vl = new val_list();
+			vl->append(GetFile()->GetVal()->Ref());
+			vl->append(new StringVal(new BroString((const u_char *)key, key_len, 1)));
+			mgr.QueueEvent(pe_xor_found, vl);
+			file_id = file_mgr->HashHandle(GetFile()->GetID());
+			}
+		else
+			{
+			skip = true;
+			return true;
+			}
+		}
+
+	if ( key_found )
+		{
+		unsigned char* plaintext = new unsigned char[len];
+		for ( uint64 i = 0; i < len; ++i )
+			plaintext[i] = data[i] ^ key[(i + offset) % key_len];
+
+		file_mgr->DataIn(plaintext, len, file_id, string(fmt("XOR decrypted from ")) + GetFile()->GetID());
+		}
+
+	else
+		{
+		val_list* vl = new val_list();
+		vl->append(GetFile()->GetVal()->Ref());
+		mgr.QueueEvent(pe_xor_not_found, vl);
+		}
+	
 
 	offset += len;
 
@@ -64,9 +106,9 @@ bool PE_XOR::FindKey(const u_char* data)
 						{
 						key = new char[l + 1];
 						key[l] = 0;
+						key_len = l;
 
 						memcpy(key, data + i, l);
-
 						return true;						
 						}
 					}
@@ -78,6 +120,6 @@ bool PE_XOR::FindKey(const u_char* data)
 
 bool PE_XOR::EndOfFile()
 	{
-
+	file_mgr->EndOfFile("test_file");
 	return false;
 	}

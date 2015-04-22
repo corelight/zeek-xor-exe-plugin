@@ -5,6 +5,8 @@
 #include "file_analysis/File.h"
 #include "file_analysis/Analyzer.h"
 
+#include "pe_xor.bif.h"
+
 namespace file_analysis {
 
 /**
@@ -36,6 +38,9 @@ private:
 	uint8 key_len;
 
 	bool key_found;
+	bool skip;
+
+	string file_id;
 };
 
 } // namespace file_analysis
