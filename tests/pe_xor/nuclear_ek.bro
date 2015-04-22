@@ -5,6 +5,6 @@
 # @TEST-EXEC: btest-diff files.log
 # @TEST-EXEC: btest-diff http.log
 # @TEST-EXEC: btest-diff pe.log
-# @TEST-EXEC: btest-diff output
+# @TEST-EXEC: btest-diff notice.log
 
 @load Broala/PE_XOR

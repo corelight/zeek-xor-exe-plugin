@@ -37,11 +37,13 @@ bool PE_XOR::DeliverStream(const u_char* data, uint64 len)
 		key_found = FindKey(data);
 		if ( key_found )
 			{
+			file_id = file_mgr->HashHandle(GetFile()->GetID());
+
 			val_list* vl = new val_list();
 			vl->append(GetFile()->GetVal()->Ref());
 			vl->append(new StringVal(new BroString((const u_char *)key, key_len, 1)));
+			vl->append(new StringVal(file_id));
 			mgr.QueueEvent(pe_xor_found, vl);
-			file_id = file_mgr->HashHandle(GetFile()->GetID());
 			}
 		else
 			{
