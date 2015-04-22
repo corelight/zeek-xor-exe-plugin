@@ -82,7 +82,9 @@ bool PE_XOR::FindKey(const u_char* data)
 		key_0 = data[0] ^ 0x4d;
 		key_1 = data[1] ^ 0x5a;
 
-		uint64 key_start = 0;
+		// The number of times we must see the key repeated to
+		// confirm it depends on the length of the key for short keys.
+		char key_reqs[3] = {5, 4, 3};
 
 		if ( key_0 == 0 && key_1 == 0 )
 			return false;
@@ -94,13 +96,32 @@ bool PE_XOR::FindKey(const u_char* data)
 			if ( data[i] == key_0 && data[i+1] == key_1 )
 				{
 				// Now we scan for a key length
-				for ( uint l = ( key_0 == key_1 ) ? 1 : 2; ( i + l < NULL_SECTION_END ) && l < MAX_KEY_LEN; ++l )
+				// If our key_0 == key_1, try a key length of 1. Otherwise, start at 2.
+				for ( uint l = ( key_0 == key_1 ) ? 1 : 2;
+				      // Keep going until we get to NULL_SECTION END, or we hit the max key length
+				      ( i + l < NULL_SECTION_END ) && l < MAX_KEY_LEN;
+				      ++l )
 					{
+					// Our key length doesn't line up with our start
 					if ( i % l != 0 )
 						continue;
-
+					
 					bool possible_key = true;
-					for ( uint j = 0; (i + j + l < NULL_SECTION_END) && (j < 2 * l) && possible_key; ++j )
+
+					// Key length | Number of times we need to see the whole key to confirm
+					// -----------|--------------------------------------------------------
+					//     1      |   5
+					//     2      |   4
+					//     3      |   3
+					//     4+     |   2
+					uint8 required_key_iterations = l < 4 ? key_reqs[l - 1] : 2;
+
+					// Now we check to see if data[j] == data[j + l]
+					for ( uint j = 0; 
+					      // Keep going until NULL_SECTION_END, we have excluded this as a possible key,
+					      // or, we repeated it the requisite number of times (depends on the length).
+					      (i + j + l < NULL_SECTION_END) && (j < required_key_iterations * l) && possible_key; 
+					      ++j )
 						{
 						if ( data[i + j] != data[i + l + j] )
 							possible_key = false;
@@ -123,6 +144,6 @@ bool PE_XOR::FindKey(const u_char* data)
 
 bool PE_XOR::EndOfFile()
 	{
-	file_mgr->EndOfFile("test_file");
+	file_mgr->EndOfFile(file_id);
 	return false;
 	}

@@ -3,11 +3,12 @@
 #empty_field	(empty)
 #unset_field	-
 #path	files
-#open	2015-04-22-00-28-08
+#open	2015-04-22-15-42-23
 #fields	ts	fuid	tx_hosts	rx_hosts	conn_uids	source	depth	analyzers	mime_type	filename	duration	local_orig	is_orig	seen_bytes	total_bytes	missing_bytes	overflow_bytes	timedout	parent_fuid	md5	sha1	sha256	extracted
 #types	time	string	set[addr]	set[addr]	set[string]	string	count	set[string]	string	string	interval	bool	bool	count	count	count	count	bool	string	string	string	string	string
 1428602839.486930	FDfOpRPqMYk61IR23	108.61.188.200	192.168.122.89	CXWv6p3arKYeMETxOg	HTTP	0	PE_XOR	text/html	-	0.347077	-	F	43962	-	0	0	F	-	-	-	-	-
 1428602840.129090	F8iRoX3bBJRy0nUlMi	108.61.188.200	192.168.122.89	CXWv6p3arKYeMETxOg	HTTP	0	PE_XOR	application/x-shockwave-flash	4a71	0.059273	-	F	15463	15463	0	0	F	-	-	-	-	-
+1428602842.525435	FYBGcJ87VHkNoFjU2	(empty)	(empty)	(empty)	XOR decrypted from FCS4r5gqymgxis4D2	0	PE,PE_XOR	application/x-dosexec	-	2.480445	-	-	929792	-	0	0	F	-	-	-	-	-
 1428602842.524765	FCS4r5gqymgxis4D2	108.61.188.200	192.168.122.89	CjhGID4nQcgTWjvg4c	HTTP	0	PE_XOR	-	4a71	2.481115	-	F	929792	929792	0	0	F	-	-	-	-	-
 1428602848.190101	F3kS7x41EhAWb5TSr	208.83.223.34	192.168.122.89	CCvvfg3TEfuqmmG4bh	SSL	0	X509,MD5,SHA1,PE_XOR	application/pkix-cert	-	0.000000	-	F	451	-	0	0	F	-	010b8a1f895912fcfabbb5815e135121	00fed3f0593a011b0175d549a8f5bc171b6d5c22	-	-
 1428602849.066615	FpjwMG2ruqYhNGtGa1	216.58.216.205	192.168.122.89	CRJuHdVW0XPVINV8a	SSL	0	X509,MD5,SHA1,PE_XOR	application/pkix-cert	-	0.000000	-	F	1156	-	0	0	F	-	4f70e1becce15c750ee17486206c1f0f	c91cf78a7bb25a7b8f372705fb7eaaae4a75da6e	-	-
@@ -21,6 +22,5 @@
 1428602855.944397	FPaZet4gIRVBYHRVP1	46.252.26.2	192.168.122.89	C3SfNE4BWaU4aSuwkc	SSL	0	X509,MD5,SHA1,PE_XOR	application/pkix-cert	-	0.000000	-	F	443	-	0	0	F	-	2fb2c1e617adc9fe52c66cbe100372b3	6b64545c752f2fb319662ea7397a5e33cbba3e97	-	-
 1428602856.287500	F9GW3T6G7yN9DAxp4	91.220.163.62	192.168.122.89	Che1bq3i2rO3KD1Syg	SSL	0	X509,MD5,SHA1,PE_XOR	application/pkix-cert	-	0.000000	-	F	448	-	0	0	F	-	90a81f934e6baa2eb3109e6cfdf5ef6f	ec4800be2e6c3f18c2071518740cb24d5a1e4ef3	-	-
 1428602877.338739	FUgXmH3i54OERhzRG2	77.72.80.9	192.168.122.89	CwSkQu4eWZCH7OONC1	HTTP	0	PE_XOR	text/html	-	0.048577	-	F	4559	-	0	0	F	-	-	-	-	-
-1428602842.525435	FYBGcJ87VHkNoFjU2	(empty)	(empty)	(empty)	XOR decrypted from FCS4r5gqymgxis4D2	0	PE,PE_XOR	application/x-dosexec	-	2.480445	-	-	929792	-	0	0	T	-	-	-	-	-
 1428603236.508634	FQ1skFv3NpoZsrrWk	91.220.163.62	192.168.122.89	CfTOmO0HKorjr8Zp7	SSL	0	X509,MD5,SHA1,PE_XOR	application/pkix-cert	-	0.000000	-	F	448	-	0	0	F	-	90a81f934e6baa2eb3109e6cfdf5ef6f	ec4800be2e6c3f18c2071518740cb24d5a1e4ef3	-	-
-#close	2015-04-22-00-28-08
+#close	2015-04-22-15-42-23
