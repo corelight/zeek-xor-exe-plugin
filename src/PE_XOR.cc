@@ -99,7 +99,7 @@ bool PE_XOR::FindKey(const u_char* data)
 						continue;
 
 					bool possible_key = true;
-					for ( uint j = 0; (i + j + l < NULL_SECTION_END) && possible_key; ++j )
+					for ( uint j = 0; (i + j + l < NULL_SECTION_END) && ( j < 2*l ) && possible_key; ++j )
 						{
 						if ( data[i + j] != data[i + l + j] )
 							possible_key = false;

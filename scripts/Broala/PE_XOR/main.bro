@@ -22,7 +22,7 @@ event file_sniff(f: fa_file, meta: fa_metadata)
 event pe_xor_found(f: fa_file, key: string, decrypted_fuid: string)
 	{
 	local message = fmt("Executable file XOR encrypted with key '%s'", key);
-	local n: Notice::Info = Notice::Info($note=XOR_Encrypted_PE_File_Seen, $msg=message, $sub=fmt("Decrypted PE fuid is %s", decrypted_fuid), $f=f);
+	local n: Notice::Info = Notice::Info($ts=network_time(), $note=XOR_Encrypted_PE_File_Seen, $msg=message, $sub=fmt("Decrypted PE fuid is %s", decrypted_fuid), $f=f);
 	NOTICE(n);
 	}
 
