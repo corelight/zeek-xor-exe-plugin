@@ -32,8 +32,8 @@ event pe_file_header(f: fa_file, h: PE::FileHeader)
 	{
 	if ( f?$source && "XOR" in f$source )
 		{
-		local key = possible_xor_bins[f$id]$key;
-		local message = fmt("Executable file XOR encrypted with key '%s'", key);
+		local key = to_upper(string_to_ascii_hex(possible_xor_bins[f$id]$key));
+		local message = fmt("Executable file XOR encrypted with hex key 0x%s", key);
 		local submessage = fmt("Decrypted File ID: %s", f$id);
 		local n: Notice::Info = Notice::Info($ts=network_time(),
 											$note=XOR_Encrypted_PE_File_Seen,
