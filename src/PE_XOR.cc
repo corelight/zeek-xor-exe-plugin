@@ -1,3 +1,5 @@
+// Copyright 2015, Broala LLC. All rights reserved.
+
 #include "BroString.h"
 
 #include "PE_XOR.h"

@@ -1,5 +1,7 @@
 ##! Detect Windows executable (PE) files that are XOR-encrypted.
 ##! The XOR key can be up to 30 characters long.
+##!
+##! Copyright 2015, Broala LLC. All rights reserved.
 
 @load base/frameworks/files
 @load base/frameworks/notice
@@ -15,9 +17,9 @@ export {
 
 	type XORbinary: record {
 		## The key used to decrypt the file.
-		key:			string &optional;
+		key:  string &optional;
 		## The original file.
-		f:				fa_file &optional;
+		f:    fa_file &optional;
 	};
 }
 
@@ -36,10 +38,10 @@ event pe_file_header(f: fa_file, h: PE::FileHeader)
 		local message = fmt("Executable file XOR encrypted with hex key 0x%s", key);
 		local submessage = fmt("Decrypted File ID: %s", f$id);
 		local n: Notice::Info = Notice::Info($ts=network_time(),
-											$note=XOR_Encrypted_PE_File_Seen,
-											$msg=message,
-											$sub=submessage,
-											$f=possible_xor_bins[f$id]$f);
+		                                     $note=XOR_Encrypted_PE_File_Seen,
+		                                     $msg=message,
+		                                     $sub=submessage,
+		                                     $f=possible_xor_bins[f$id]$f);
 		NOTICE(n);
 		}
 	}

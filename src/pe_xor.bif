@@ -1,3 +1,15 @@
+# Copyright 2015, Broala LLC. All rights reserved.
 
+## Generated when a PE file discovered in a file was discovered.
+##
+## f: The file being analyzed.
+## 
+## key: The XOR key that was discovered.
+## 
+## decrypted_fuid: The file ID of the un-XOR'd Windows executable.
 event pe_xor_found%(f: fa_file, key: string, decrypted_fuid: string%);
+
+## Generated when no PE file was discovered in the file.
+##
+## f: The file that did not appear to be an XOR'd Windows executable.
 event pe_xor_not_found%(f: fa_file%);

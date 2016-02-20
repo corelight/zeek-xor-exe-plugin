@@ -1,3 +1,5 @@
+// Copyright 2015, Broala LLC. All rights reserved.
+
 #ifndef FILE_ANALYSIS_PE_XOR_H
 #define FILE_ANALYSIS_PE_XOR_H
 

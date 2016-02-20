@@ -1,16 +1,19 @@
-================
- Broala::PE_XOR
-================
-
-Bro plugin to detect and decrypt XOR-encrypted EXEs.
-
 ==============
- Installation
+Broala::PE_XOR
 ==============
 
+Bro plugin to detect and decrypt XOR-obfuscated Windows EXEs.
 
- From Source
--------------
+The key used to XOR the file will be automatically discovered and used
+to XOR the file back to the original Window's executable.  Once the
+file is deobfucated, it is passed back into the file analysis 
+framework for further analysis.
+
+Installation
+============
+
+From Source
+-----------
 
 .. code:: bash
 
@@ -25,18 +28,11 @@ Now confirm that Bro can see it:
 
    bro -N | grep Broala
 
+Usage
+=====
 
-From Plugin Package
--------------------
+Notices
+-------
 
-.. code:: bash
-
-   cd /usr/local/bro/lib/bro/plugins
-   tar xvzf ~/src/Broala_PE_XOR-0.1.tar.gz
-
-Now confirm that Bro can see it:
-
-.. code:: bash
-
-   bro -N | grep Broala
-
+`Broala::XOR_Encrypted_PE_File_Seen` - This notice will be generated when an 
+XOR'd Windows executable is discovered.  

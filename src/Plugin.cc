@@ -1,3 +1,4 @@
+// Copyright 2015, Broala LLC. All rights reserved.
 
 #include "Plugin.h"
 

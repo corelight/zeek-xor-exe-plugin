@@ -1,3 +1,4 @@
+// Copyright 2015, Broala LLC. All rights reserved.
 
 #ifndef BRO_PLUGIN_BROALA_PE_XOR
 #define BRO_PLUGIN_BROALA_PE_XOR
