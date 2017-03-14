@@ -7,4 +7,4 @@
 # @TEST-EXEC: btest-diff pe.log
 # @TEST-EXEC: btest-diff notice.log
 
-@load Broala/PE_XOR
+@load Corelight/PE_XOR

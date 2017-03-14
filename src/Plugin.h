@@ -1,12 +1,12 @@
-// Copyright 2015, Broala LLC. All rights reserved.
+// Copyright 2017, Corelight, Inc. All rights reserved.
 
-#ifndef BRO_PLUGIN_BROALA_PE_XOR
-#define BRO_PLUGIN_BROALA_PE_XOR
+#ifndef BRO_PLUGIN_CORELIGHT_PE_XOR
+#define BRO_PLUGIN_CORELIGHT_PE_XOR
 
 #include <plugin/Plugin.h>
 
 namespace plugin {
-namespace Broala_PE_XOR {
+namespace Corelight_PE_XOR {
 
 class Plugin : public ::plugin::Plugin
 {

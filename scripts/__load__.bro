@@ -8,7 +8,7 @@
 #
 
 @load ./init.bro
-@load ./Broala/PE_XOR
+@load ./Corelight/PE_XOR
 
 
 

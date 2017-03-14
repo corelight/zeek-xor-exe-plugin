@@ -6,5 +6,5 @@
 #open	2016-01-20-20-07-47
 #fields	ts	uid	id.orig_h	id.orig_p	id.resp_h	id.resp_p	fuid	file_mime_type	file_desc	proto	note	msg	sub	src	dst	p	n	peer_descr	actions	suppress_for	dropped	remote_location.country_code	remote_location.region	remote_location.city	remote_location.latitude	remote_location.longitude
 #types	time	string	addr	port	addr	port	string	string	string	enum	enum	string	string	addr	addr	port	count	string	set[enum]	interval	bool	string	string	string	double	double
-1428602842.525435	CjhGID4nQcgTWjvg4c	192.168.122.89	49246	108.61.188.200	80	FCS4r5gqymgxis4D2	-	http://ambasawild.ga/B1BdXR4MVAcIRVNTRQNEUwwHCA8JU1kLAURTAQceCAxVTwgCD0wKAQNFDB0Tf31TLVtSQEA	tcp	Broala::XOR_Encrypted_PE_File_Seen	Executable file XOR encrypted with hex key 0x72464C6B4F63677079	Decrypted File ID: FYBGcJ87VHkNoFjU2	192.168.122.89	108.61.188.200	80	-	bro	Notice::ACTION_LOG	3600.000000	F	-	-	-	-	-
+1428602842.525435	CjhGID4nQcgTWjvg4c	192.168.122.89	49246	108.61.188.200	80	FCS4r5gqymgxis4D2	-	http://ambasawild.ga/B1BdXR4MVAcIRVNTRQNEUwwHCA8JU1kLAURTAQceCAxVTwgCD0wKAQNFDB0Tf31TLVtSQEA	tcp	Corelight::XOR_Encrypted_PE_File_Seen	Executable file XOR encrypted with hex key 0x72464C6B4F63677079	Decrypted File ID: FYBGcJ87VHkNoFjU2	192.168.122.89	108.61.188.200	80	-	bro	Notice::ACTION_LOG	3600.000000	F	-	-	-	-	-
 #close	2016-01-20-20-07-47

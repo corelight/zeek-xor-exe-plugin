@@ -1,13 +1,13 @@
 ##! Detect Windows executable (PE) files that are XOR-encrypted.
 ##! The XOR key can be up to 30 characters long.
 ##!
-##! Copyright 2015, Broala LLC. All rights reserved.
+##! Copyright 2017, Corelight, Inc. All rights reserved.
 
 @load base/frameworks/files
 @load base/frameworks/notice
 @load base/files/pe
 
-module Broala;
+module Corelight;
 
 export {
 	redef enum Notice::Type += {

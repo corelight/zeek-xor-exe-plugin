@@ -1,6 +1,6 @@
-==============
-Broala::PE_XOR
-==============
+=================
+Corelight::PE_XOR
+=================
 
 Bro plugin to detect and decrypt XOR-obfuscated Windows EXEs.
 
@@ -17,7 +17,7 @@ From Source
 
 .. code:: bash
 
-   git clone https://github.com/broala/bro-xor-exe-plugin.git
+   git clone https://github.com/corelight/bro-xor-exe-plugin.git
    cd bro-xor-exe-plugin
    ./configure --bro-dist=$HOME/src/bro
    sudo make install
@@ -26,7 +26,7 @@ Now confirm that Bro can see it:
 
 .. code:: bash
 
-   bro -N | grep Broala
+   bro -N | grep Corelight
 
 Usage
 =====
@@ -34,5 +34,5 @@ Usage
 Notices
 -------
 
-`Broala::XOR_Encrypted_PE_File_Seen` - This notice will be generated when an 
+`Corelight::XOR_Encrypted_PE_File_Seen` - This notice will be generated when an 
 XOR'd Windows executable is discovered.  
