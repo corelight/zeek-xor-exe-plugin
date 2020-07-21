@@ -23,7 +23,7 @@ PE_XOR::~PE_XOR()
 	{
 	}
 
-bool PE_XOR::DeliverStream(const u_char* data, uint64 len)
+bool PE_XOR::DeliverStream(const u_char* data, uint64_t len)
 	{
 	if ( skip )
 		return true;
@@ -58,7 +58,7 @@ bool PE_XOR::DeliverStream(const u_char* data, uint64 len)
 	if ( key_found )
 		{
 		unsigned char* plaintext = new unsigned char[len];
-		for ( uint64 i = 0; i < len; ++i )
+		for ( uint64_t i = 0; i < len; ++i )
 			plaintext[i] = data[i] ^ key[(i + offset) % key_len];
 
 		file_mgr->DataIn(plaintext, len, file_id, string(fmt("XOR decrypted from ")) + GetFile()->GetID());
@@ -116,7 +116,7 @@ bool PE_XOR::FindKey(const u_char* data)
 					//     2      |   4
 					//     3      |   3
 					//     4+     |   2
-					uint8 required_key_iterations = l < 4 ? key_reqs[l - 1] : 2;
+					uint8_t required_key_iterations = l < 4 ? key_reqs[l - 1] : 2;
 
 					// Now we check to see if data[j] == data[j + l]
 					for ( uint j = 0; 

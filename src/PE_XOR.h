@@ -1,7 +1,6 @@
 // Copyright 2017, Corelight, Inc. All rights reserved.
 
-#ifndef FILE_ANALYSIS_PE_XOR_H
-#define FILE_ANALYSIS_PE_XOR_H
+#pragma once
 
 #include "Val.h"
 #include "file_analysis/File.h"
@@ -21,7 +20,7 @@ public:
 	static file_analysis::Analyzer* Instantiate(RecordVal* args, File* file)
 		{ return new PE_XOR(args, file); }
 
-	virtual bool DeliverStream(const u_char* data, uint64 len);
+	virtual bool DeliverStream(const u_char* data, uint64_t len);
 
 	virtual bool EndOfFile();
 
@@ -31,13 +30,13 @@ protected:
 	bool FindKey(const u_char* data);
 
 private:
-	uint8 key_0;
-	uint8 key_1;
+	uint8_t key_0;
+	uint8_t key_1;
 
-	uint64 offset;
+	uint64_t offset;
 
 	char* key;
-	uint8 key_len;
+	uint8_t key_len;
 
 	bool key_found;
 	bool skip;
@@ -47,4 +46,3 @@ private:
 
 } // namespace file_analysis
 
-#endif

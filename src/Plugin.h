@@ -1,9 +1,9 @@
 // Copyright 2017, Corelight, Inc. All rights reserved.
 
-#ifndef BRO_PLUGIN_CORELIGHT_PE_XOR
-#define BRO_PLUGIN_CORELIGHT_PE_XOR
+#pragma once
 
 #include <plugin/Plugin.h>
+#include "analyzer/Component.h"
 
 namespace plugin {
 namespace Corelight_PE_XOR {
@@ -20,4 +20,3 @@ extern Plugin plugin;
 }
 }
 
-#endif
