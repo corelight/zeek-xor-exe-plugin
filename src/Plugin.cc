@@ -1,8 +1,10 @@
 // Copyright 2017, Corelight, Inc. All rights reserved.
 
 #include "Plugin.h"
-
 #include "PE_XOR.h"
+
+#include "plugin/Plugin.h"
+#include "file_analysis/Component.h"
 
 namespace plugin { namespace Corelight_PE_XOR { Plugin plugin; } }
 
@@ -15,7 +17,7 @@ plugin::Configuration Plugin::Configure()
 	plugin::Configuration config;
 	config.name = "Corelight::PE_XOR";
 	config.description = "Plugin to detect and decrypt XOR-encrypted EXEs";
-	config.version.major = 0;
-	config.version.minor = 1;
+	config.version.major = 1;
+	config.version.minor = 2;
 	return config;
 	}

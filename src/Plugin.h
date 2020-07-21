@@ -3,7 +3,6 @@
 #pragma once
 
 #include <plugin/Plugin.h>
-#include "analyzer/Component.h"
 
 namespace plugin {
 namespace Corelight_PE_XOR {
