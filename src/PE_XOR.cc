@@ -1,4 +1,4 @@
-// Copyright 2017, Corelight, Inc. All rights reserved.
+// Copyright 2017-2021, Corelight, Inc. All rights reserved.
 
 #include "PE_XOR.h"
 #include "zeek/file_analysis/Manager.h"
