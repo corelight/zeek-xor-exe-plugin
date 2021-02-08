@@ -1,7 +1,7 @@
 ##! Detect Windows executable (PE) files that are XOR-encrypted.
 ##! The XOR key can be up to 30 characters long.
 ##!
-##! Copyright 2017, Corelight, Inc. All rights reserved.
+##! Copyright 2017-2021, Corelight, Inc. All rights reserved.
 
 @load base/frameworks/files
 @load base/frameworks/notice

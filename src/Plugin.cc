@@ -1,23 +1,22 @@
 // Copyright 2017, Corelight, Inc. All rights reserved.
 
-#include "Plugin.h"
+#include "zeek/plugin/Plugin.h"
+#include "zeek/file_analysis/Component.h"
 #include "PE_XOR.h"
 
-#include "plugin/Plugin.h"
-#include "file_analysis/Component.h"
+namespace zeek::plugin::detail::Corelight_PE_XOR  {
 
-namespace plugin { namespace Corelight_PE_XOR { Plugin plugin; } }
+class Plugin : public zeek::plugin::Plugin {
+public:
+	zeek::plugin::Configuration Configure() override
+		{
+		AddComponent(new zeek::file_analysis::Component("PE_XOR", zeek::file_analysis::detail::PE_XOR::Instantiate));
 
-using namespace plugin::Corelight_PE_XOR;
+		zeek::plugin::Configuration config;
+		config.name = "Corelight::PE_XOR";
+		config.description = "Plugin to detect and decrypt XOR-encrypted EXEs";
+		return config;
+		}
+} plugin;
 
-plugin::Configuration Plugin::Configure()
-	{
-	AddComponent(new ::file_analysis::Component("PE_XOR", ::file_analysis::PE_XOR::Instantiate));
-
-	plugin::Configuration config;
-	config.name = "Corelight::PE_XOR";
-	config.description = "Plugin to detect and decrypt XOR-encrypted EXEs";
-	config.version.major = 1;
-	config.version.minor = 2;
-	return config;
-	}
+}

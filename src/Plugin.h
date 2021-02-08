@@ -1,10 +1,10 @@
-// Copyright 2017, Corelight, Inc. All rights reserved.
+// Copyright 2017-2021, Corelight, Inc. All rights reserved.
 
 #pragma once
 
-#include <plugin/Plugin.h>
+#include <zeek/plugin/Plugin.h>
 
-namespace plugin {
+namespace zeek::plugin {
 namespace Corelight_PE_XOR {
 
 class Plugin : public ::plugin::Plugin
