@@ -2,5 +2,5 @@
 # loaded automatically at that point.
 # 
 
-@load ./main.bro
+@load ./main
 

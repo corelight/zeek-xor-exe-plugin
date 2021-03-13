@@ -1,50 +1,49 @@
-// Copyright 2017, Corelight, Inc. All rights reserved.
+// Copyright 2017-2021, Corelight, Inc. All rights reserved.
 
-#ifndef FILE_ANALYSIS_PE_XOR_H
-#define FILE_ANALYSIS_PE_XOR_H
+#pragma once
 
-#include "Val.h"
-#include "file_analysis/File.h"
-#include "file_analysis/Analyzer.h"
+#include <string>
+
+#include "zeek/file_analysis/File.h"
+#include "zeek/file_analysis/Analyzer.h"
 
 #include "pe_xor.bif.h"
 
-namespace file_analysis {
+namespace zeek::file_analysis::detail {
 
 /**
  * Analyze XOR-encrypted Portable Executable files
  */
 class PE_XOR : public file_analysis::Analyzer {
 public:
-	~PE_XOR();
+	~PE_XOR() override;
 
-	static file_analysis::Analyzer* Instantiate(RecordVal* args, File* file)
+	static file_analysis::Analyzer* Instantiate(RecordValPtr args, file_analysis::File* file)
 		{ return new PE_XOR(args, file); }
 
-	virtual bool DeliverStream(const u_char* data, uint64 len);
-
-	virtual bool EndOfFile();
+	bool DeliverStream(const u_char* data, uint64_t len) override;
+	bool EndOfFile() override;
 
 protected:
-	PE_XOR(RecordVal* args, File* file);
+	PE_XOR(RecordValPtr args, file_analysis::File* file);
 
 	bool FindKey(const u_char* data);
 
 private:
-	uint8 key_0;
-	uint8 key_1;
+	uint8_t key_0;
+	uint8_t key_1;
 
-	uint64 offset;
+	uint64_t offset;
 
 	char* key;
-	uint8 key_len;
+	uint8_t key_len;
 
 	bool key_found;
 	bool skip;
 
-	string file_id;
+	std::string file_id;
 };
 
-} // namespace file_analysis
+} // namespace zeek::file_analysis::detail
 
-#endif
+

@@ -1,18 +1,16 @@
-// Copyright 2017, Corelight, Inc. All rights reserved.
-
-#include "BroString.h"
+// Copyright 2017-2021, Corelight, Inc. All rights reserved.
 
 #include "PE_XOR.h"
-#include "file_analysis/Manager.h"
+#include "zeek/file_analysis/Manager.h"
 
 #define NULL_SECTION_START 0x1a
 #define NULL_SECTION_END 0x38
 #define MAX_KEY_LEN 30
 
-using namespace file_analysis;
+namespace zeek::file_analysis::detail {
 
-PE_XOR::PE_XOR(RecordVal* args, File* file)
-	: file_analysis::Analyzer(file_mgr->GetComponentTag("PE_XOR"), args, file)
+PE_XOR::PE_XOR(RecordValPtr args, file_analysis::File* file)
+	: file_analysis::Analyzer(file_mgr->GetComponentTag("PE_XOR"), std::move(args), file)
 	{
 	offset = 0;
 	key_found = false;
@@ -23,14 +21,14 @@ PE_XOR::~PE_XOR()
 	{
 	}
 
-bool PE_XOR::DeliverStream(const u_char* data, uint64 len)
+bool PE_XOR::DeliverStream(const u_char* data, uint64_t len)
 	{
 	if ( skip )
 		return true;
 
 	if ( ! key_found && len < 512 )
 		{
-		// This probably shouln't happen.
+		// This probably shouldn't happen.
 		skip = true;
 		return true;
 		}
@@ -42,11 +40,10 @@ bool PE_XOR::DeliverStream(const u_char* data, uint64 len)
 			{
 			file_id = file_mgr->HashHandle(GetFile()->GetID());
 
-			val_list* vl = new val_list();
-			vl->append(GetFile()->GetVal()->Ref());
-			vl->append(new StringVal(new BroString((const u_char *)key, key_len, 1)));
-			vl->append(new StringVal(file_id));
-			mgr.QueueEvent(pe_xor_found, vl);
+			zeek::event_mgr.Enqueue(pe_xor_found,
+			                        GetFile()->ToVal(),
+			                        zeek::make_intrusive<zeek::StringVal>(key_len, reinterpret_cast<const char*>(key)),
+			                        zeek::make_intrusive<zeek::StringVal>(file_id));
 			}
 		else
 			{
@@ -58,17 +55,15 @@ bool PE_XOR::DeliverStream(const u_char* data, uint64 len)
 	if ( key_found )
 		{
 		unsigned char* plaintext = new unsigned char[len];
-		for ( uint64 i = 0; i < len; ++i )
+		for ( uint64_t i = 0; i < len; ++i )
 			plaintext[i] = data[i] ^ key[(i + offset) % key_len];
 
-		file_mgr->DataIn(plaintext, len, file_id, string(fmt("XOR decrypted from ")) + GetFile()->GetID());
+		file_mgr->DataIn(plaintext, len, file_id, std::string(zeek::util::fmt("XOR decrypted from ")) + GetFile()->GetID());
 		}
 
 	else
 		{
-		val_list* vl = new val_list();
-		vl->append(GetFile()->GetVal()->Ref());
-		mgr.QueueEvent(pe_xor_not_found, vl);
+		zeek::event_mgr.Enqueue(pe_xor_not_found, GetFile()->ToVal());
 		}
 	
 
@@ -116,7 +111,7 @@ bool PE_XOR::FindKey(const u_char* data)
 					//     2      |   4
 					//     3      |   3
 					//     4+     |   2
-					uint8 required_key_iterations = l < 4 ? key_reqs[l - 1] : 2;
+					uint8_t required_key_iterations = l < 4 ? key_reqs[l - 1] : 2;
 
 					// Now we check to see if data[j] == data[j + l]
 					for ( uint j = 0; 
@@ -149,3 +144,5 @@ bool PE_XOR::EndOfFile()
 	file_mgr->EndOfFile(file_id);
 	return false;
 	}
+
+} // namespace zeek::file_analysis::detail
