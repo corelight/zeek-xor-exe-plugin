@@ -2,5 +2,5 @@
 description = A plugin to find Windows executables that have been XOR encoded.
 tags = plugin, pe, executable, malware
 plugin_dir = build
-build_command = ( ./configure --bro-dist=%(bro_dist)s && make )
+build_command = ( ./configure && make )
 test_command = ( cd tests && btest -d )
