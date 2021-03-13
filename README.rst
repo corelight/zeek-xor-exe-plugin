@@ -2,7 +2,7 @@
 Corelight::PE_XOR
 =================
 
-Bro plugin to detect and decrypt XOR-obfuscated Windows EXEs.
+Zeek plugin to detect and decrypt XOR-obfuscated Windows EXEs.
 
 The key used to XOR the file will be automatically discovered and used
 to XOR the file back to the original Window's executable.  Once the
@@ -17,16 +17,16 @@ From Source
 
 .. code:: bash
 
-   git clone https://github.com/corelight/bro-xor-exe-plugin.git
-   cd bro-xor-exe-plugin
-   ./configure --bro-dist=$HOME/src/bro
+   git clone https://github.com/corelight/zeek-xor-exe-plugin.git
+   cd zeek-xor-exe-plugin
+   ./configure 
    sudo make install
 
-Now confirm that Bro can see it:
+Now confirm that Zeek can see it:
 
 .. code:: bash
 
-   bro -N | grep Corelight
+   zeek -N | grep Corelight
 
 Usage
 =====
