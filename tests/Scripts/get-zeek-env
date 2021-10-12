@@ -2,8 +2,8 @@
 #
 # BTest helper for getting values for Zeek-related environment variables.
 
-base=`dirname $0`
-zeek_dist=`cat ${base}/../../build/CMakeCache.txt | grep ZEEK_DIST | cut -d = -f 2`
+base=$(dirname $0)
+zeek_dist=$(cat ${base}/../../build/CMakeCache.txt 2>/dev/null | grep ZEEK_DIST | cut -d = -f 2)
 
 if [ -n "${zeek_dist}" ]; then
     if [ "$1" = "zeekpath" ]; then
@@ -11,9 +11,9 @@ if [ -n "${zeek_dist}" ]; then
     elif [ "$1" = "zeek_plugin_path" ]; then
         ( cd ${base}/../.. && pwd )
     elif [ "$1" = "path" ]; then
-        echo ${zeek_dist}/build/src:${zeek_dist}/aux/btest:${zeek_dist}/auxil/btest:${base}/:${zeek_dist}/aux/zeek-cut:${zeek_dist}/auxil/zeek-cut:$PATH
+        echo ${zeek_dist}/build/src:${zeek_dist}/aux/btest:${base}/:${zeek_dist}/aux/zeek-cut:$PATH
     else
-        echo "usage: `basename $0` <var>" >&2
+        echo "usage: $(basename $0) <var>" >&2
         exit 1
     fi
 else
@@ -26,11 +26,14 @@ else
     if [ "$1" = "zeekpath" ]; then
         zeek-config --zeekpath
     elif [ "$1" = "zeek_plugin_path" ]; then
-        ( cd ${base}/../.. && pwd )
+        # Combine the local tree and the system-wide path. This allows
+        # us to test on a local build or an installation made via zkg,
+        # which squirrels away the build. --cpk
+        echo "$(cd ${base}/../.. && pwd):$(zeek-config --plugin_dir)"
     elif [ "$1" = "path" ]; then
         echo ${PATH}
     else
-        echo "usage: `basename $0` <var>" >&2
+        echo "usage: $(basename $0) <var>" >&2
         exit 1
     fi
 fi
