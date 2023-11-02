@@ -2,6 +2,6 @@
 description = A plugin to find Windows executables that have been XOR encoded.
 tags = plugin, pe, executable, malware
 plugin_dir = build
-script_dir = scripts
-build_command = ( ./configure && make )
-test_command = ( cd tests && btest -d )
+script_dir = scripts/Corelight/PE_XOR
+build_command = ./configure && make
+test_command = cd tests && btest -d

@@ -32,7 +32,7 @@ bool PE_XOR::DeliverStream(const u_char* data, uint64_t len)
 		skip = true;
 		return true;
 		}
-	
+
 	if ( ! key_found )
 		{
 		key_found = FindKey(data);
@@ -65,7 +65,6 @@ bool PE_XOR::DeliverStream(const u_char* data, uint64_t len)
 		{
 		zeek::event_mgr.Enqueue(pe_xor_not_found, GetFile()->ToVal());
 		}
-	
 
 	offset += len;
 
@@ -102,7 +101,7 @@ bool PE_XOR::FindKey(const u_char* data)
 					// Our key length doesn't line up with our start
 					if ( i % l != 0 )
 						continue;
-					
+
 					bool possible_key = true;
 
 					// Key length | Number of times we need to see the whole key to confirm
